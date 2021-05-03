@@ -18,7 +18,6 @@ function dropDown() {
         charts(dropDownId);
     })); 
 } 
-
 // reset
 function resetData() {
     demographicsTable.html("");
@@ -75,7 +74,6 @@ function charts(id) {
             }
         };
         var barData = [barTrace];
-
         // layout
         var barLayout = {
             height: 750,
@@ -83,6 +81,28 @@ function charts(id) {
         }
         Plotly.newPlot("bar", barData, barLayout);
 
+        // bubble chart
+        var bubbleTrace = {
+            x: otuIds[0],
+            y: sampleValues[0],
+            text: otuLabels[0],
+            mode: 'markers',
+            marker: {
+                size: sampleValues[0],
+                color: otuIds[0],
+                colorscale: 'Earth'
+            }
+        };
+        var bubbleData = [bubbleTrace];
+        // layout
+        var bubbleLayout = {
+            height: 600,
+            width: 1200,
+            xaxis: {
+                title: "<b>OTU ID</b>"
+            }
+        };
+        Plotly.newPlot('bubble', bubbleData, bubbleLayout);
     })); 
 };
 
