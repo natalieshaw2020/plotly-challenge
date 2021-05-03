@@ -29,13 +29,12 @@ function resetData() {
 // table
 function charts(id) {
     d3.json("data/samples.json").then((data => {
-        // filter to selection
         var sampleMetadata = data.metadata.filter(participant => participant.id == id)[0];
 
         Object.entries(sampleMetadata).forEach(([key, value]) => {
-            var newList = demographicsTable.append("ul");
-            var listItem = newList.append("li");
-            listItem.text(`${key}: ${value}`);
+            var table = demographicsTable.append("ul");
+            var dataPoint = table.append("li");
+            dataPoint.text(`${key}: ${value}`);
         }); 
 
         var individualSample = data.samples.filter(sample => sample.id == id)[0];
