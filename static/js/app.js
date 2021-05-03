@@ -57,6 +57,32 @@ function charts(id) {
                     break;
             } 
         }); 
+
+        // bar chart
+        var topOtuIds = otuIds[0].slice(0, 10).reverse();
+        var topOtuLabels = otuLabels[0].slice(0, 10).reverse();
+        var topSampleValues = sampleValues[0].slice(0, 10).reverse();
+        var topOtuIdsFormatted = topOtuIds.map(otuID => "OTU " + otuID);
+
+        var barTrace = {
+            x: topSampleValues,
+            y: topOtuIdsFormatted,
+            text: topOtuLabels,
+            type: 'bar',
+            orientation: 'h',
+            marker: {
+                color: 'rgb(31,119,180)'
+            }
+        };
+        var barData = [barTrace];
+
+        // layout
+        var barLayout = {
+            height: 750,
+            width: 1075,
+        }
+        Plotly.newPlot("bar", barData, barLayout);
+
     })); 
 };
 
